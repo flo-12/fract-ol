@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbecht <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 18:42:13 by fbecht            #+#    #+#             */
-/*   Updated: 2023/02/14 18:42:15 by fbecht           ###   ########.fr       */
+/*   Created: 2023/02/20 18:18:33 by fbecht            #+#    #+#             */
+/*   Updated: 2023/02/20 18:18:35 by fbecht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef COLORS_H
+# define COLORS_H
 
-# include "libft.h"
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <string.h>
-# include <math.h>
-
-/*
-fcntl.h: open, close
-unistd.h: read, write
-stdlib.h: malloc, free, exit
-stdio.h: perror
-string.h: strerror
-math.h: <see Notion>
-
-Allowed functions:
-	* All functions of the MiniLibX
-*/
+# define COLOR_SILVER 0xCCCCCC
+# define COLOR_RED 0x00FF0000
+# define COLOR_GREEN 0x0000FF00
+# define COLOR_BLUE 0x000000FF
+# define COLOR_BLACK 0x00000000
+# define COLOR_WHITE 0x00FFFFFF
 
 #endif

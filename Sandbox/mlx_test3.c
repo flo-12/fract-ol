@@ -4,7 +4,7 @@
 //$(CC) -Wall -Wextra -Werror -I/minilibx-linux -Imlx_linux -O3 -c $< -o $@
 //cc mlx_test3.c -L./minilibx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 #include "./minilibx_linux/mlx.h"
-//#include "./minilibx_linux/mlx_int.h"
+#include "./minilibx_linux/mlx_int.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -20,7 +20,7 @@
 
 #define KEY_ESC 65307
 
-typedef struct s_img
+/*typedef struct s_img
 {
 	void	*image;
 	char	*data;
@@ -28,7 +28,7 @@ typedef struct s_img
 	int		size_line;
 //	int		endian;
 	int		format;
-}			t_img;
+}			t_img;*/
 
 typedef struct	s_data {
 	void	*mlx;
@@ -45,17 +45,6 @@ typedef struct s_rect
 	int	color;
 }			t_rect;
 
-
-int	handle_keypress(int key, t_data *data)
-{
-	if (key = KEY_ESC)
-	{
-		mlx_destroy_window(data->mlx, data->win);
-		data->win = NULL;
-	}
-	return (0);
-}
-
 int	encode_rgb(int red, int green, int blue)
 {
 	return (red << 16 | green << 8 | blue);
@@ -68,15 +57,15 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 
 	i = img->bpp - 8;
 	pixel = img->data + (img->size_line * y + x * (img->bpp / 8));
-	*(unsigned int *)pixel = color;
-	/*while (i >= 0)
+	//*(unsigned int *)pixel = color;
+	while (i >= 0)
 	{
 		if (img->format != 0)
 			*pixel++ = (color >> i) & 0xFF;
 		else
 			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
 		i -= 8;
-	}*/
+	}
 }
 
 void	render_background(t_img *img, int color)
@@ -110,15 +99,34 @@ int	render_rect(t_img *img, t_rect rect)
 	return (0);
 }
 
+int	handle_keypress(int key, t_data *data)
+{
+	if (key == KEY_ESC)
+	{
+		mlx_destroy_window(data->mlx, data->win);
+		data->win = NULL;
+		exit(1);
+	}
+	else if (key == 97)
+	{
+		render_background(&data->img, BLUE_PIXEL);
+		render_rect(&data->img, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100,
+				100, 100, GREEN_PIXEL});
+		render_rect(&data->img, (t_rect){0, 0, 100, 100, RED_PIXEL});
+
+		mlx_put_image_to_window(data->mlx, data->win, data->img.image, 0, 0);
+	}
+	return (0);
+}
+
 int	render(t_data *data)
 {
 	if (!data->win)
 		return (1);
-	render_background(&data->img, BLUE_PIXEL);
+	//render_background(&data->img, WHITE_PIXEL);
 	render_rect(&data->img, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100,
 			100, 100, GREEN_PIXEL});
 	render_rect(&data->img, (t_rect){0, 0, 100, 100, RED_PIXEL});
-
 	mlx_put_image_to_window(data->mlx, data->win, data->img.image, 0, 0);
 	return (0);
 }
@@ -143,8 +151,8 @@ int	main()
 		// destroy_display, free(mlx), return
 	}
 	// what is the endian in t_img?
-	data.img.data = mlx_get_data_addr(&data.img, &data.img.bpp, &data.img.size_line, &data.img.format);
-	
+	data.img.data = mlx_get_data_addr(data.img.image, &data.img.bpp, &data.img.size_line, &data.img.format);
+
 	mlx_loop_hook(data.mlx, &render, &data);
 	mlx_key_hook(data.win, &handle_keypress, &data);
 
