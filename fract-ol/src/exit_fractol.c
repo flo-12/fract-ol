@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors.h                                           :+:      :+:    :+:   */
+/*   exit_fractol.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbecht <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 18:18:33 by fbecht            #+#    #+#             */
-/*   Updated: 2023/02/20 18:18:35 by fbecht           ###   ########.fr       */
+/*   Created: 2023/02/21 11:40:03 by fbecht            #+#    #+#             */
+/*   Updated: 2023/02/21 11:40:05 by fbecht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLORS_H
-# define COLORS_H
+#include "fractol.h"
 
-# define COLOR_SILVER 0xCCCCCC
-# define COLOR_RED 0x00FF0000
-# define COLOR_GREEN 0x0000FF00
-# define COLOR_BLUE 0x000000FF
-# define COLOR_YELLOW 0x00FFFF00
-# define COLOR_BLACK 0x00000000
-# define COLOR_WHITE 0x00FFFFFF
-
-#endif
+void	exit_fractol(t_data *data, int failure, char *text)
+{
+	if (data->img.image)
+		mlx_destroy_image(data->mlx, data->img.image);
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
+	if (failure)
+	{
+		perror(text);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		ft_printf("%s\n", text);
+		exit(EXIT_SUCCESS);
+	}
+}

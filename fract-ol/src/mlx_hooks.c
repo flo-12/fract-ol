@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors.h                                           :+:      :+:    :+:   */
+/*   mlx_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbecht <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 18:18:33 by fbecht            #+#    #+#             */
-/*   Updated: 2023/02/20 18:18:35 by fbecht           ###   ########.fr       */
+/*   Created: 2023/02/21 11:45:47 by fbecht            #+#    #+#             */
+/*   Updated: 2023/02/21 11:45:49 by fbecht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLORS_H
-# define COLORS_H
+#include "fractol.h"
 
-# define COLOR_SILVER 0xCCCCCC
-# define COLOR_RED 0x00FF0000
-# define COLOR_GREEN 0x0000FF00
-# define COLOR_BLUE 0x000000FF
-# define COLOR_YELLOW 0x00FFFF00
-# define COLOR_BLACK 0x00000000
-# define COLOR_WHITE 0x00FFFFFF
+int	handle_keypress(int key, t_data *data)
+{
+	if (key == KEY_ESC)
+		exit_fractol(data, 0, EXIT_ESC);
+	return (0);
+}
 
-#endif
+int	handle_destroy(t_data *data)
+{
+	exit_fractol(data, 0, EXIT_CROSS);
+	return (0);
+}

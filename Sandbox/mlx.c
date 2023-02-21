@@ -68,6 +68,11 @@ int	hook_mouse(int key, int x, int y, t_vars *vars)
 	return (1);
 }
 
+int	handle_destroy(t_vars *vars)
+{
+	exit (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
@@ -113,6 +118,7 @@ int	main(int argc, char **argv)
 	mlx_expose_hook(vars.win, hook_mouse, 0);
 	mlx_key_hook(vars.win, hook_key, &vars);
 	mlx_mouse_hook(vars.win, hook_mouse, 0);
+	mlx_hook(vars.win, DestroyNotify, ButtonPressMask, handle_destroy, &vars);
 	//mlx_loop_hook(vars.mlx, render_next_frame, &vars);
 	//mlx_hook(vars.win, MotionNotify, PointerMotionMask, hook_print, 0);
 	mlx_loop(vars.mlx);

@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors.h                                           :+:      :+:    :+:   */
+/*   messages.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbecht <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 18:18:33 by fbecht            #+#    #+#             */
-/*   Updated: 2023/02/20 18:18:35 by fbecht           ###   ########.fr       */
+/*   Created: 2023/02/21 11:31:28 by fbecht            #+#    #+#             */
+/*   Updated: 2023/02/21 11:31:30 by fbecht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLORS_H
-# define COLORS_H
+#ifndef MESSAGES_H
+# define MESSAGES_H
 
-# define COLOR_SILVER 0xCCCCCC
-# define COLOR_RED 0x00FF0000
-# define COLOR_GREEN 0x0000FF00
-# define COLOR_BLUE 0x000000FF
-# define COLOR_YELLOW 0x00FFFF00
-# define COLOR_BLACK 0x00000000
-# define COLOR_WHITE 0x00FFFFFF
+# define SUCCESS "Succesfull exit"
+
+# define ARG_WRONG "Wrong input arguments"
+
+# define INIT_MLX "initialize_data - data.mlx=NULL"
+# define INIT_WIN "initialize_data - data.win=NULL"
+# define INIT_IMG "initialize_data - data.img.image=NULL"
+
+# define EXIT_ESC "Succesfull exit - ESC pressed"
+# define EXIT_CROSS "Succesfull exit - cross pressed"
 
 #endif
