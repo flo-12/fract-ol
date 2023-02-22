@@ -15,6 +15,7 @@
 
 # define SUCCESS "Succesfull exit"
 
+# define NO_ARG "Parameter must be passed to the program (./fractol <fractol> <...>)\n\t<fractol> \"Mandelbrot\" (or \"M\") or \"Julia\" (or \"J\")"
 # define ARG_WRONG "Wrong input arguments"
 
 # define INIT_MLX "initialize_data - data.mlx=NULL"

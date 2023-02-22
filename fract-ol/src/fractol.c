@@ -35,6 +35,8 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	ft_bzero(&data, sizeof(data));
+	if (argc == 1)
+		exit_fractol(&data, 0, NO_ARG);
 	if (!(argc == 3))
 		exit_fractol(&data, 0, ARG_WRONG);
 	if (!(!ft_strncmp(argv[1], "Mandelbrot", ft_strlen("Mandelbrot")) || !ft_strncmp(argv[1], "M", ft_strlen("M"))))
@@ -45,9 +47,8 @@ int	main(int argc, char **argv)
 	mandelbrot(&data, ft_atoi(argv[2]));
 	mlx_put_image_to_window(data.mlx, data.win, data.img.image, 0, 0);
 	mlx_key_hook(data.win, &handle_keypress, &data);
+	mlx_mouse_hook(data.win, &hook_mouse, &data);
 	mlx_hook(data.win, DestroyNotify, ButtonPressMask, &handle_destroy, &data);
 	mlx_loop(data.mlx);
 
-	//exit_fractol(&data, 0, SUCCESS);
-	ft_printf("argc=%d , argv[0]=%s\n", argc, argv[0]);
 }
