@@ -25,4 +25,6 @@
 # define EXIT_ESC "Succesfull exit - ESC pressed"
 # define EXIT_CROSS "Succesfull exit - cross pressed"
 
+# define MAX_ZOOM_OUT "Zooming further out not possible -> reached lowest zoom value"
+
 #endif

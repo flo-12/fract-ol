@@ -27,10 +27,19 @@
 
 # define WINDOW_WIDTH 600
 # define WINDOW_HEIGHT 600
-# define ZOOM_MAX 100
 
-# define MANDEL_C_RE ((col - WINDOW_WIDTH / 2.0) * 4.0 / WINDOW_WIDTH)
-# define MANDEL_C_IM ((row - WINDOW_HEIGHT / 2.0) * 4.0 / WINDOW_WIDTH)
+# define MANDEL_C_RE ((col - (WINDOW_WIDTH * zoom) / 2.0) * 4.0 / (WINDOW_WIDTH * zoom))
+# define MANDEL_C_IM ((row - (WINDOW_HEIGHT * zoom) / 2.0) * 4.0 / (WINDOW_HEIGHT * zoom))
+
+typedef struct s_fractol
+{
+	int		iter_max;
+	double	zoom;
+	int		row_min;
+	int		row_max;
+	int		col_min;
+	int		col_max;
+}			t_fractol;
 
 typedef struct s_img2
 {
@@ -42,9 +51,10 @@ typedef struct s_img2
 }			t_img2;
 
 typedef struct s_data {
-	void	*mlx;
-	void	*win;
-	t_img2	img;
+	void		*mlx;
+	void		*win;
+	t_img2		img;
+	t_fractol	fract;
 }			t_data;
 
 /* UTILS_MLX */
@@ -60,6 +70,6 @@ int		handle_destroy(t_data *data);
 int		hook_mouse(int key, int x, int y, t_data *data);
 
 /* MANDELBROT */
-void	mandelbrot(t_data *data, int max);
+void	mandelbrot(t_data *data);
 
 #endif

@@ -43,8 +43,15 @@ int	main(int argc, char **argv)
 		exit_fractol(&data, 0, ARG_WRONG);
 
 	initialize_data(&data);
+	data.fract.iter_max = ft_atoi(argv[2]);
+	data.fract.zoom = 1;
+	data.fract.row_min = 0;
+	data.fract.row_max = WINDOW_HEIGHT;
+	data.fract.col_min = 0;
+	data.fract.col_max = WINDOW_WIDTH;
 
-	mandelbrot(&data, ft_atoi(argv[2]));
+	//mandelbrot(&data, ft_atoi(argv[2]));
+	mandelbrot(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img.image, 0, 0);
 	mlx_key_hook(data.win, &handle_keypress, &data);
 	mlx_mouse_hook(data.win, &hook_mouse, &data);

@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-int	mandelbrot_iter(int col, int row, int iter_max)
+int	mandelbrot_iter(int col, int row, double zoom, int iter_max)
 {
 	double	x;
 	double	x_new;
@@ -56,25 +56,33 @@ int	calc_color(int iter, int iter_max)
 	return (0 << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
 
-void	mandelbrot(t_data *data, int iter_max)
+void	mandelbrot(t_data *data)
 {
 	int	row;
 	int	col;
 	int	iter;
+	int	x;
+	int	y;
 
-	row = -1;
-	while (++row <= WINDOW_HEIGHT)
+/*ft_printf("[mandelbrot] zoom*10=%d | row_min=%d | row_max=%d | col_min=%d | col_max=%d\n",
+	(int)(data->fract.zoom * 10), data->fract.row_min, data->fract.row_max,
+	data->fract.col_min, data->fract.col_max);*/
+
+	y = -1;
+	row = data->fract.row_min;
+	while (++y <= WINDOW_HEIGHT)
 	{
-		col = -1;
-		while (++col <= WINDOW_WIDTH)
+		col = data->fract.col_min;
+		x = -1;
+		while (++x <= WINDOW_WIDTH)
 		{
-			iter = mandelbrot_iter(col, row, iter_max);
-			if (iter < iter_max)
-				//img_pixel_put(&data->img, col, row, COLOR_YELLOW / iter);
-				//img_pixel_put(&data->img, col, row, encode_rgb(0, 200, 255 - (iter % 256), 255 - (iter % 256)));
-				img_pixel_put(&data->img, col, row, calc_color(iter, iter_max));
+			iter = mandelbrot_iter(col, row, data->fract.zoom, data->fract.iter_max);
+			if (iter < data->fract.iter_max)
+				img_pixel_put(&data->img, x, y, calc_color(iter, data->fract.iter_max));
 			else
-				img_pixel_put(&data->img, col, row, COLOR_BLACK);
+				img_pixel_put(&data->img, x, y, COLOR_BLACK);
+			col++;
 		}
+		row++;
 	}
 }
