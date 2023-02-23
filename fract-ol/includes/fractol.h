@@ -27,6 +27,7 @@
 
 # define WINDOW_WIDTH 600
 # define WINDOW_HEIGHT 600
+# define ZOOM_FACTOR 0.2
 
 # define MANDEL_C_RE ((col - (WINDOW_WIDTH * zoom) / 2.0) * 4.0 / (WINDOW_WIDTH * zoom))
 # define MANDEL_C_IM ((row - (WINDOW_HEIGHT * zoom) / 2.0) * 4.0 / (WINDOW_HEIGHT * zoom))

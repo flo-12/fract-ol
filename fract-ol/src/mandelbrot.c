@@ -67,6 +67,7 @@ void	mandelbrot(t_data *data)
 /*ft_printf("[mandelbrot] zoom*10=%d | row_min=%d | row_max=%d | col_min=%d | col_max=%d\n",
 	(int)(data->fract.zoom * 10), data->fract.row_min, data->fract.row_max,
 	data->fract.col_min, data->fract.col_max);*/
+ft_printf("[mandelbrot] iter=%d | zoom*10=%d\n", data->fract.iter_max, (int)(data->fract.zoom * 10));
 
 	y = -1;
 	row = data->fract.row_min;

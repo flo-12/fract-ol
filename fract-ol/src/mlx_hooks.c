@@ -30,7 +30,7 @@ int	hook_mouse(int key, int x, int y, t_data *data)
 	ft_printf("key=%d (x=%d | y=%d)\n", key, x, y);
 	if (key == MOUSE_WHEEL_UP)		// zoom in
 	{
-		data->fract.zoom += 0.1;
+		data->fract.zoom += ZOOM_FACTOR;
 		data->fract.row_min = WINDOW_HEIGHT * (data->fract.zoom - 1) / 2;
 		data->fract.row_max = WINDOW_HEIGHT * data->fract.zoom - data->fract.row_min;
 		data->fract.col_min = WINDOW_WIDTH * (data->fract.zoom - 1) / 2;
@@ -42,7 +42,7 @@ int	hook_mouse(int key, int x, int y, t_data *data)
 	{
 		if ((int)(data->fract.zoom * 10) > 10)
 		{
-			data->fract.zoom -= 0.1;
+			data->fract.zoom -= ZOOM_FACTOR;
 			data->fract.row_min = WINDOW_HEIGHT * (data->fract.zoom - 1) / 2;
 			data->fract.row_max = WINDOW_HEIGHT * data->fract.zoom - data->fract.row_min;
 			data->fract.col_min = WINDOW_WIDTH * (data->fract.zoom - 1) / 2;
