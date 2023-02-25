@@ -73,4 +73,7 @@ int		hook_mouse(int key, int x, int y, t_data *data);
 /* MANDELBROT */
 void	mandelbrot(t_data *data);
 
+/* JULIA */
+void	julia(t_data *data);
+
 #endif

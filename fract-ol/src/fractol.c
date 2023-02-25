@@ -50,8 +50,8 @@ int	main(int argc, char **argv)
 	data.fract.col_min = 0;
 	data.fract.col_max = WINDOW_WIDTH;
 
-	//mandelbrot(&data, ft_atoi(argv[2]));
-	mandelbrot(&data);
+	//mandelbrot(&data);
+	julia(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img.image, 0, 0);
 	mlx_key_hook(data.win, &handle_keypress, &data);
 	mlx_mouse_hook(data.win, &hook_mouse, &data);

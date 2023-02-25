@@ -12,20 +12,26 @@
 
 #include "fractol.h"
 
-int	mandelbrot_iter(int col, int row, double zoom, int iter_max)
+int	julia_iter(int col, int row, int iter_max)
 {
 	double	x;
 	double	x_new;
 	double	y;
 	int		iter;
 
-	x = 0;
-	y = 0;
+	double	c_re = -0.79;
+	double	c_im = 0.15;
+
+	x = 1.5 * (col - WINDOW_WIDTH / 2.0) / (0.5 * WINDOW_WIDTH);
+	y = (row - WINDOW_HEIGHT / 2.0) / (0.5 * WINDOW_HEIGHT);
+
+	//x = 0;
+	//y = 0;
 	iter = 0;
 	while (pow(x, 2) + pow(y, 2) <= 4 && iter < iter_max)
 	{
-		x_new = pow(x, 2) - pow(y, 2) + MANDEL_C_RE;
-		y = 2 * x * y + MANDEL_C_IM;
+		x_new = pow(x, 2) - pow(y, 2) + c_re;
+		y = 2 * x * y + c_im;
 		x = x_new;
 		iter++;
 	}
@@ -56,7 +62,7 @@ static int	calc_color(int iter, int iter_max)
 	return (0 << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
 
-void	mandelbrot(t_data *data)
+void	julia(t_data *data)
 {
 	int	row;
 	int	col;
@@ -64,7 +70,7 @@ void	mandelbrot(t_data *data)
 	int	x;
 	int	y;
 
-/*ft_printf("[mandelbrot] zoom*10=%d | row_min=%d | row_max=%d | col_min=%d | col_max=%d\n",
+/*ft_printf("[julia] zoom*10=%d | row_min=%d | row_max=%d | col_min=%d | col_max=%d\n",
 	(int)(data->fract.zoom * 10), data->fract.row_min, data->fract.row_max,
 	data->fract.col_min, data->fract.col_max);*/
 
@@ -76,7 +82,7 @@ void	mandelbrot(t_data *data)
 		x = -1;
 		while (++x <= WINDOW_WIDTH)
 		{
-			iter = mandelbrot_iter(col, row, data->fract.zoom, data->fract.iter_max);
+			iter = julia_iter(col, row, data->fract.iter_max);
 			if (iter < data->fract.iter_max)
 				img_pixel_put(&data->img, x, y, calc_color(iter, data->fract.iter_max));
 			else
