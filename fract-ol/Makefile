@@ -11,7 +11,8 @@ PATH_MINILIBX = ./minilibx_linux/
 PATH_INC = ./includes/
 PATH_SRC = ./src/
 
-FILE_SRC = fractol.c utils_mlx.c exit_fractol.c mlx_hooks.c mandelbrot.c julia.c
+FILE_SRC = fractol.c utils_mlx.c exit_fractol.c mlx_hooks.c mandelbrot.c \
+		julia.c init_data.c
 
 SRC_MAIN = $(FILE_SRC:%=$(PATH_SRC)%)
 

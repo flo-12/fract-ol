@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbecht <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,21 +12,15 @@
 
 #include "fractol.h"
 
-int	julia_iter(int col, int row, int iter_max)
+int	julia_iter(int col, int row, double c_re, double c_im, int iter_max)
 {
 	double	x;
 	double	x_new;
 	double	y;
 	int		iter;
 
-	double	c_re = -0.79;
-	double	c_im = 0.15;
-
 	x = 1.5 * (col - WINDOW_WIDTH / 2.0) / (0.5 * WINDOW_WIDTH);
 	y = (row - WINDOW_HEIGHT / 2.0) / (0.5 * WINDOW_HEIGHT);
-
-	//x = 0;
-	//y = 0;
 	iter = 0;
 	while (pow(x, 2) + pow(y, 2) <= 4 && iter < iter_max)
 	{
@@ -82,7 +76,7 @@ void	julia(t_data *data)
 		x = -1;
 		while (++x <= WINDOW_WIDTH)
 		{
-			iter = julia_iter(col, row, data->fract.iter_max);
+			iter = julia_iter(col, row, data->fract.c_re, data->fract.c_im, data->fract.iter_max);
 			if (iter < data->fract.iter_max)
 				img_pixel_put(&data->img, x, y, calc_color(iter, data->fract.iter_max));
 			else
