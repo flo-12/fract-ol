@@ -18,7 +18,6 @@ int	main(int argc, char **argv)
 
 	ft_bzero(&data, sizeof(data));
 	init_data(&data, argc, argv);
-
 	if (data.fract.fractol == 'M')
 		mandelbrot(&data);
 	else
@@ -28,5 +27,4 @@ int	main(int argc, char **argv)
 	mlx_mouse_hook(data.win, &hook_mouse, &data);
 	mlx_hook(data.win, DestroyNotify, ButtonPressMask, &handle_destroy, &data);
 	mlx_loop(data.mlx);
-
 }

@@ -34,5 +34,6 @@ int			ft_argtype_ui(va_list arg_ptr);
 int			ft_getnbr_si_len(int nbr);
 int			ft_getnbr_ui_len(unsigned int nbr);
 void		ft_putnbr_unsigned_fd(unsigned int nbr, int fd);
+int			ft_argtype_float(va_list arg_ptr);
 
 #endif

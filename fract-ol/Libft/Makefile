@@ -28,7 +28,7 @@ FILE_LIBFT = ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 		ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 FILE_GNL = get_next_line_utils.c get_next_line.c
 FILE_PRINTF = ft_printf.c ft_printf_utils.c ft_printf_utils_str_char.c \
-	ft_printf_utils_nbr.c ft_printf_utils_hex.c
+	ft_printf_utils_nbr.c ft_printf_utils_hex.c ft_printf_utils_float.c
 
 SRC_LIBFT = $(FILE_LIBFT:%=$(PATH_LIBFT)%)
 SRC_GNL = $(FILE_GNL:%=$(PATH_GNL)%)

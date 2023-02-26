@@ -54,12 +54,9 @@ void	get_c_value(t_data *data, int argc, char **argv)
 	int	i_im;
 	int	i_im_sign;
 
-// HANDLE NEGATIVE VALUES!!!!
-
 	if (argc < 4)
 	{
-		//ft_printf("%s(C_Re=%d | C_Im=%d)\n", WRONG_JULIA_C, JULIA_C_RE, JULIA_C_IM);
-		ft_printf("%s(C_Re=-0.79 | C_Im=0.15)\n", NO_JULIA_C);
+		ft_printf("%s(C_Re=%f | C_Im=%f)\n", WRONG_JULIA_C, JULIA_C_RE, JULIA_C_IM);
 		data->fract.c_re = JULIA_C_RE;
 		data->fract.c_im = JULIA_C_IM;
 		return ;
@@ -77,8 +74,7 @@ void	get_c_value(t_data *data, int argc, char **argv)
 	if ((i_re && (argv[2][i_re + i_re_sign] != '.' || check_digit(argv[2] + i_re + i_re_sign)))
 		|| (i_im && (argv[3][i_im + i_im_sign] != '.' || check_digit(argv[3] + i_im + i_im_sign))))
 	{
-		//ft_printf("%s(C_Re=%d | C_Im=%d)\n", WRONG_JULIA_C, JULIA_C_RE, JULIA_C_IM);
-		ft_printf("%s(C_Re=-0.79 | C_Im=0.15)\n", WRONG_JULIA_C);
+		ft_printf("%s(C_Re=%f | C_Im=%f)\n", WRONG_JULIA_C, JULIA_C_RE, JULIA_C_IM);
 		data->fract.c_re = JULIA_C_RE;
 		data->fract.c_im = JULIA_C_IM;
 		return ;

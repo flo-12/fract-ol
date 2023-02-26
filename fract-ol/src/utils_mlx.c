@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fractol.h"
+#include "fractol.h"
 
 int	encode_rgb(int t, int red, int green, int blue)
 {

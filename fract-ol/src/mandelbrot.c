@@ -34,8 +34,8 @@ int	mandelbrot_iter(int col, int row, double zoom, int iter_max)
 
 static int	calc_color(int iter, int iter_max)
 {
-	int	cs;
-	int	rgb[3];
+	int		cs;
+	int		rgb[3];
 	double	div;
 
 	cs = 2;
@@ -64,10 +64,6 @@ void	mandelbrot(t_data *data)
 	int	x;
 	int	y;
 
-/*ft_printf("[mandelbrot] zoom*10=%d | row_min=%d | row_max=%d | col_min=%d | col_max=%d\n",
-	(int)(data->fract.zoom * 10), data->fract.row_min, data->fract.row_max,
-	data->fract.col_min, data->fract.col_max);*/
-
 	y = -1;
 	row = data->fract.row_min;
 	while (++y <= WINDOW_HEIGHT)
@@ -76,9 +72,11 @@ void	mandelbrot(t_data *data)
 		x = -1;
 		while (++x <= WINDOW_WIDTH)
 		{
-			iter = mandelbrot_iter(col, row, data->fract.zoom, data->fract.iter_max);
+			iter = mandelbrot_iter(col, row, data->fract.zoom,
+					data->fract.iter_max);
 			if (iter < data->fract.iter_max)
-				img_pixel_put(&data->img, x, y, calc_color(iter, data->fract.iter_max));
+				img_pixel_put(&data->img, x, y,
+					calc_color(iter, data->fract.iter_max));
 			else
 				img_pixel_put(&data->img, x, y, COLOR_BLACK);
 			col++;

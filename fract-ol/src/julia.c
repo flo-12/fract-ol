@@ -64,10 +64,6 @@ void	julia(t_data *data)
 	int	x;
 	int	y;
 
-/*ft_printf("[julia] zoom*10=%d | row_min=%d | row_max=%d | col_min=%d | col_max=%d\n",
-	(int)(data->fract.zoom * 10), data->fract.row_min, data->fract.row_max,
-	data->fract.col_min, data->fract.col_max);*/
-
 	y = -1;
 	row = data->fract.row_min;
 	while (++y <= WINDOW_HEIGHT)
@@ -76,9 +72,11 @@ void	julia(t_data *data)
 		x = -1;
 		while (++x <= WINDOW_WIDTH)
 		{
-			iter = julia_iter(col, row, data->fract.c_re, data->fract.c_im, data->fract.iter_max);
+			iter = julia_iter(col, row, data->fract.c_re,
+					data->fract.c_im, data->fract.iter_max);
 			if (iter < data->fract.iter_max)
-				img_pixel_put(&data->img, x, y, calc_color(iter, data->fract.iter_max));
+				img_pixel_put(&data->img, x, y,
+					calc_color(iter, data->fract.iter_max));
 			else
 				img_pixel_put(&data->img, x, y, COLOR_BLACK);
 			col++;
