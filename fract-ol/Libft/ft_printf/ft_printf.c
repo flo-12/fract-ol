@@ -13,6 +13,8 @@
 //#include "../include/ft_printf.h"
 #include "ft_printf.h"
 
+#include <stdio.h>
+
 // get the variadic arg and put it in the required conversion type
 int	ft_put_argval(char type, va_list arg_ptr)
 {

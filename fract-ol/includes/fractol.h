@@ -27,11 +27,9 @@
 
 # define WINDOW_WIDTH 600
 # define WINDOW_HEIGHT 600
-# define ZOOM_FACTOR 0.2
+# define ZOOM_FACTOR 1.1
 
 # define ITER_MAX 400
-# define MANDEL_C_RE ((col - (WINDOW_WIDTH * zoom) / 2.0) * 4.0 / (WINDOW_WIDTH * zoom))
-# define MANDEL_C_IM ((row - (WINDOW_HEIGHT * zoom) / 2.0) * 4.0 / (WINDOW_HEIGHT * zoom))
 # define JULIA_C_RE -0.79
 # define JULIA_C_IM 0.15
 
@@ -39,6 +37,7 @@ typedef struct s_fractol
 {
 	int		iter_max;
 	double	zoom;
+	int		centre[2];
 	int		row_min;
 	int		row_max;
 	int		col_min;
@@ -66,6 +65,8 @@ typedef struct s_data {
 
 /* INIT_DATA */
 void	init_data(t_data *data, int argc, char **argv);
+void	get_julia_c(t_data *data, int argc, char **argv);
+int		check_digit(char *str);
 
 /* UTILS_MLX */
 void	img_pixel_put(t_img2 *img, int x, int y, int color);

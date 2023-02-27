@@ -16,6 +16,26 @@ int	handle_keypress(int key, t_data *data)
 {
 	if (key == KEY_ESC)
 		exit_fractol(data, 0, EXIT_ESC);
+	if (key == KEY_R)
+	{
+		ft_printf("Resetting to default\n");
+		data->fract.zoom = 1;
+		data->fract.row_min = 0;
+		data->fract.row_max = WINDOW_HEIGHT;
+		data->fract.col_min = 0;
+		data->fract.col_max = WINDOW_WIDTH;
+		data->fract.centre[0] = WINDOW_WIDTH / 2;
+		data->fract.centre[1] = WINDOW_HEIGHT / 2;
+		//if (data->fract.fractol == 'M')
+			mandelbrot(data);
+		//else
+		//	julia(data);
+		mlx_put_image_to_window(data->mlx, data->win, data->img.image, 0, 0);
+	}
+	if (key == KEY_ONE)
+		// reset to Mandelbrot
+	if (key == KEY_TWO)
+		// reset to Julia
 	return (0);
 }
 
@@ -25,42 +45,36 @@ int	handle_destroy(t_data *data)
 	return (0);
 }
 
+void	set_zoom_val(int key, int x, int y, t_fractol *fract)
+{
+	fract->centre[0] = fract->centre[0] + (x - WINDOW_WIDTH / 2) / fract->zoom;
+	fract->centre[1] = fract->centre[1] + (y - WINDOW_HEIGHT / 2) / fract->zoom;
+	if (key == MOUSE_WHEEL_UP)
+		fract->zoom *= ZOOM_FACTOR;
+	else if (key == MOUSE_WHEEL_DOWN)
+		fract->zoom *= 1 / ZOOM_FACTOR;
+	fract->col_min = fract->centre[0] - (WINDOW_WIDTH / 2) / fract->zoom;
+	fract->col_max = fract->col_min + WINDOW_WIDTH / fract->zoom;
+	fract->row_min = fract->centre[1] - (WINDOW_HEIGHT / 2) / fract->zoom;
+	fract->row_max = fract->row_min + WINDOW_HEIGHT / fract->zoom;
+}
+
 int	hook_mouse(int key, int x, int y, t_data *data)
 {
-	//ft_printf("key=%d (x=%d | y=%d)\n", key, x, y);
-	/*static int	row_off = 0;
-	static int	col_off = 0;
-	
-	row_off = row_off + y - WINDOW_HEIGHT / 2;
-	col_off = col_off + x - WINDOW_WIDTH / 2;*/
-	if (key == MOUSE_WHEEL_UP)		// zoom in
+	if (key == MOUSE_WHEEL_UP || key == MOUSE_WHEEL_DOWN)
 	{
-		data->fract.zoom += ZOOM_FACTOR;
-		data->fract.row_min = WINDOW_HEIGHT * (data->fract.zoom - 1) * (y / WINDOW_HEIGHT);
-		//data->fract.row_min = WINDOW_HEIGHT * (data->fract.zoom - 1) / 2 + row_off / (data->fract.zoom);
-		data->fract.row_max = WINDOW_HEIGHT * data->fract.zoom - data->fract.row_min;
-		data->fract.col_min = WINDOW_WIDTH * (data->fract.zoom - 1) * (x / WINDOW_WIDTH);
-		//data->fract.col_min = WINDOW_WIDTH * (data->fract.zoom - 1) / 2 + col_off / (data->fract.zoom);
-		data->fract.col_max = WINDOW_WIDTH * data->fract.zoom - data->fract.col_min;
-		mandelbrot(data);
-		mlx_put_image_to_window(data->mlx, data->win, data->img.image, 0, 0);
-	}
-	if (key == MOUSE_WHEEL_DOWN)	// zoom out
-	{
-		if ((int)(data->fract.zoom * 10) > 10)
+		if (key == MOUSE_WHEEL_DOWN
+			&& !((int)(data->fract.zoom * 10) > 10))
 		{
-			data->fract.zoom -= ZOOM_FACTOR;
-			data->fract.row_min = WINDOW_HEIGHT * (data->fract.zoom - 1) * (y / WINDOW_HEIGHT);
-			//data->fract.row_min = WINDOW_HEIGHT * (data->fract.zoom - 1) / 2 + row_off / (data->fract.zoom);
-			data->fract.row_max = WINDOW_HEIGHT * data->fract.zoom - data->fract.row_min;
-			data->fract.col_min = WINDOW_WIDTH * (data->fract.zoom - 1) * (x / WINDOW_WIDTH);
-			//data->fract.col_min = WINDOW_WIDTH * (data->fract.zoom - 1) / 2 + col_off / (data->fract.zoom);
-			data->fract.col_max = WINDOW_WIDTH * data->fract.zoom - data->fract.col_min;
-			mandelbrot(data);
-			mlx_put_image_to_window(data->mlx, data->win, data->img.image, 0, 0);
-		}
-		else
 			ft_printf("%s\n", MAX_ZOOM_OUT);
+			return (0);
+		}
+		set_zoom_val(key, x, y, &data->fract);
+		//if (data->fract.fractol == 'M')
+			mandelbrot(data);
+		//else
+		//	julia(data);
+		mlx_put_image_to_window(data->mlx, data->win, data->img.image, 0, 0);
 	}
 	return (0);
 }

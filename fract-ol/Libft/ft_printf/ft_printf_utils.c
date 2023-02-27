@@ -41,7 +41,7 @@ const char	*ft_check_input(const char *str)
 	char	*conv;
 	int		i;
 
-	conv = "cspdiuxX%%";
+	conv = "cspdiuxXf%%";
 	i = ft_get_i_del(str);
 	while (str[i] != '\0')
 	{
