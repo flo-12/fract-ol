@@ -18,10 +18,7 @@ int	main(int argc, char **argv)
 
 	ft_bzero(&data, sizeof(data));
 	init_data(&data, argc, argv);
-	//if (data.fract.fractol == 'M')
-		mandelbrot(&data);
-	//else
-	//	julia(&data);
+	draw_fractol(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img.image, 0, 0);
 	mlx_key_hook(data.win, &handle_keypress, &data);
 	mlx_mouse_hook(data.win, &hook_mouse, &data);

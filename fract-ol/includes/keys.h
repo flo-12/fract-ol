@@ -16,6 +16,7 @@
 # define EVENT_CLOSE_BTN 17
 # define KEY_SPACE 32
 # define KEY_MINUS 45
+# define KEY_ZERO 48
 # define KEY_ONE 49
 # define KEY_TWO 50
 # define KEY_THREE 51

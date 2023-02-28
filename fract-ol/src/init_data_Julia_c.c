@@ -12,6 +12,20 @@
 
 #include "fractol.h"
 
+int	check_digit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 double	get_double_c(int i_digit, int sign, char *str)
 {
 	double	nbr;

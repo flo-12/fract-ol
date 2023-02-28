@@ -17,11 +17,11 @@
 
 # define ARG_WRONG "[Error Input] Parameters must be passed to the program as \
 followed: ./fractol <fractol> <...>\n\n\t for Mandelbrot: \"./fractol \
-<\"Mandelbrot\" or \"M\"> <[optional] int max Iteration>\"\n\t for Julia: \
+<\"Mandelbrot\" or \"M\"> <[optional] int max Iteration> <[optional] int color set>\"\n\t for Julia: \
 \"./fractol <\"Julia\" or \"J\"> <[optional] double C_Re> <[optional] \
-double C_Im> <[optional] int max Iteration>\"\n\n\t int max Iterations is \
+double C_Im> <[optional] int max Iteration> <[optional] int color set>\"\n\n\t int max Iterations is \
 set by default to 400 if no parameter is passed\n\t C_Re and C_Im are set \
-by default to -0.79 and 0.15 if no parameter is passed"
+by default to -0.79 and 0.15 if no parameter is passed\n\t color set has to be between 0 and 5 and is set by default to 0\n"
 # define WRONG_ITER_MAX "[Warning] Passed parameter for iter_max not an int - \
 set to default value "
 # define NO_ITER_MAX "[Warning] No parameter for iter_max passed - set to \
@@ -30,6 +30,8 @@ default value "
 is not a double - set to default value "
 # define NO_JULIA_C "[Warning] Less than two parameters for C passed - set to \
 default value "
+# define NO_COLOR_SET "[Warning] No color set defined - set to default value "
+# define WRONG_COLOR_SET "[Warning] Color set not a valid input - set to default value "
 
 # define INIT_MLX "initialize_data - data.mlx=NULL"
 # define INIT_WIN "initialize_data - data.win=NULL"

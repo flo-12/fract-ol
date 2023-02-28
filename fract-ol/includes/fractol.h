@@ -25,11 +25,11 @@
 # include <string.h>
 # include <math.h>
 
-# define WINDOW_WIDTH 600
+# define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 600
 # define ZOOM_FACTOR 1.1
-
-# define ITER_MAX 400
+# define COLOR_SET 0
+# define ITER_MAX 150
 # define JULIA_C_RE -0.79
 # define JULIA_C_IM 0.15
 
@@ -44,6 +44,9 @@ typedef struct s_fractol
 	int		col_max;
 	double	c_re;
 	double	c_im;
+	double	c_re_var;
+	double	c_im_var;
+	int		color_set;
 	char	fractol;
 }			t_fractol;
 
@@ -66,7 +69,8 @@ typedef struct s_data {
 /* INIT_DATA */
 void	init_data(t_data *data, int argc, char **argv);
 void	get_julia_c(t_data *data, int argc, char **argv);
-int		check_digit(char *str);
+//int		check_digit(char *str);
+void	set_fractol_parameters(char fractol, double c_re, double c_im, t_data *data);
 
 /* UTILS_MLX */
 void	img_pixel_put(t_img2 *img, int x, int y, int color);
@@ -80,10 +84,7 @@ int		handle_keypress(int key, t_data *data);
 int		handle_destroy(t_data *data);
 int		hook_mouse(int key, int x, int y, t_data *data);
 
-/* MANDELBROT */
-void	mandelbrot(t_data *data);
-
-/* JULIA */
-void	julia(t_data *data);
+/* DRAW_FRACTOL */
+void	draw_fractol(t_data *data);
 
 #endif
