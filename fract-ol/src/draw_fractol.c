@@ -26,6 +26,8 @@ int	iterate(t_fractol fract, double x_init, double y_init)
 	{
 		x_new = x * x - y * y + fract.c_re;
 		y = 2 * x * y + fract.c_im;
+		/*x_new = x * x * x - 3 * y * y * x  + fract.c_re;
+		y = 3 * x * x * y - y * y * y + fract.c_im;*/
 		x = x_new;
 		iter++;
 	}
@@ -42,37 +44,11 @@ int	iter_fractol(double col, double row, t_data *data)
 	}
 	else
 		return (iterate(data->fract,
+				(2 * (2 * col - WINDOW_WIDTH) / WINDOW_WIDTH),
+				(2 * (2 * row - WINDOW_HEIGHT) / WINDOW_HEIGHT)));
+		/*return (iterate(data->fract,
 				1.5 * (col - WINDOW_WIDTH / 2.0) / (0.5 * WINDOW_WIDTH),
-				(row - WINDOW_HEIGHT / 2.0) / (0.5 * WINDOW_HEIGHT)));
-}
-
-static int	calc_color(int iter, int iter_max, int cs, t_data *data)
-{
-	int		rgb[3];
-	double	div;
-
-	if (iter < data->fract.iter_max)
-	{
-		div = (double)iter / iter_max;
-		if (cs < 3)
-		{
-			rgb[cs % 3] = 9 * (1 - div) * div * div * div * 255;
-			rgb[(cs + 1) % 3] = 15 * ((1 - div) * (1 - div))
-				* (div * div) * 255;
-			rgb[(cs + 2) % 3] = 9 * ((1 - div) * (1 - div) * (1 - div))
-				* div * 255;
-		}
-		else
-		{
-			rgb[cs % 3] = 9 * ((1 - div) * (1 - div) * (1 - div)) * div * 255;
-			rgb[(cs + 1) % 3] = 15 * ((1 - div) * (1 - div))
-				* (div * div) * 255;
-			rgb[(cs + 2) % 3] = 9 * (1 - div) * (div * div * div) * 255;
-		}
-		return (0 << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
-	}
-	else
-		return (COLOR_LIGHT_GREY);
+				(row - WINDOW_HEIGHT / 2.0) / (0.5 * WINDOW_HEIGHT)));*/
 }
 
 void	draw_fractol(t_data *data)
@@ -91,7 +67,6 @@ void	draw_fractol(t_data *data)
 			/*data->fract.c_im =  (-2 + 4 *WINDOW_HEIGHT / WINDOW_WIDTH)
 				+ row * (-2 - (-2 + 4 *WINDOW_HEIGHT / WINDOW_WIDTH)) / WINDOW_HEIGHT;*/
 			//data->fract.c_im = (2 * WINDOW_HEIGHT / WINDOW_WIDTH + 2) * row / WINDOW_HEIGHT - 2;
-			
 			data->fract.c_im = 4 * row / WINDOW_HEIGHT - 2;
 		col = data->fract.col_min;
 		x = -1;

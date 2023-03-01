@@ -22,7 +22,10 @@ int	handle_keypress(int key, t_data *data)
 	else if (key == KEY_R)
 	{
 		ft_printf("Resetting to default\n");
-		set_fractol_parameters(data->fract.fractol, 0, 0, data);
+		if (data->fract.fractol == 'M')
+			set_fractol_parameters(data->fract.fractol, 0, 0, data);
+		else
+			set_fractol_parameters(data->fract.fractol, data->fract.c_re, data->fract.c_im, data);
 	}
 	else if (key == KEY_ONE)
 	{
@@ -59,7 +62,7 @@ int	handle_keypress(int key, t_data *data)
 	}
 	else if (key == KEY_DOWN || key == KEY_UP)
 	{
-		ft_printf("Changing iter max value\n");
+		ft_printf("Changing iter max value (before: %d)\n", data->fract.iter_max);
 		if (key == KEY_UP)
 			data->fract.iter_max += 50;
 		else

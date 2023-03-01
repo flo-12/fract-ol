@@ -25,7 +25,7 @@
 # include <string.h>
 # include <math.h>
 
-# define WINDOW_WIDTH 1000
+# define WINDOW_WIDTH 600
 # define WINDOW_HEIGHT 600
 # define ZOOM_FACTOR 1.1
 # define COLOR_SET 0
@@ -86,5 +86,8 @@ int		hook_mouse(int key, int x, int y, t_data *data);
 
 /* DRAW_FRACTOL */
 void	draw_fractol(t_data *data);
+
+/* CALC_COLOR */
+int	calc_color(int iter, int iter_max, int cs, t_data *data);
 
 #endif
