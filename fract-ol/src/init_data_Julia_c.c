@@ -76,7 +76,6 @@ void	get_julia_c(t_data *data, int argc, char **argv)
 	i_im_sign = get_sign(argv[3]);
 	i_re = check_digit(argv[2] + i_re_sign);
 	i_im = check_digit(argv[3] + i_im_sign);
-ft_printf("C_Re=%s -> i_re_sign=%d, i_re=%d | C_Im=%s -> i_im_sign=%d, i_im=%d\n", argv[2], i_re_sign, i_re, argv[3], i_im_sign, i_im);
 	if ((i_re && (argv[2][i_re + i_re_sign] != '.'
 			|| check_digit(argv[2] + i_re + i_re_sign)))
 		|| (i_im && (argv[3][i_im + i_im_sign] != '.'

@@ -78,6 +78,7 @@ void	set_fractol_parameters(char fractol, double c_re,
 	data->fract.c_im = c_im;
 	data->fract.c_re_var = 0;
 	data->fract.c_im_var = 0;
+	data->fract.r = 2;
 }
 
 void	init_fractol(t_data *data, int argc, char **argv)

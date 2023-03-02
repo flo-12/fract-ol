@@ -18,16 +18,16 @@ int	iterate(t_fractol fract, double x_init, double y_init)
 	double	x_new;
 	double	y;
 	int		iter;
+	int		lim;
 
 	x = x_init;
 	y = y_init;
 	iter = 0;
-	while (x * x + y * y <= 4 && iter < fract.iter_max)
+	lim = 4;
+	while (x * x + y * y <= lim && iter < fract.iter_max)
 	{
 		x_new = x * x - y * y + fract.c_re;
 		y = 2 * x * y + fract.c_im;
-		/*x_new = x * x * x - 3 * y * y * x  + fract.c_re;
-		y = 3 * x * x * y - y * y * y + fract.c_im;*/
 		x = x_new;
 		iter++;
 	}
@@ -44,11 +44,11 @@ int	iter_fractol(double col, double row, t_data *data)
 	}
 	else
 		return (iterate(data->fract,
-				(2 * (2 * col - WINDOW_WIDTH) / WINDOW_WIDTH),
-				(2 * (2 * row - WINDOW_HEIGHT) / WINDOW_HEIGHT)));
+				(data->fract.r * (2 * col - WINDOW_WIDTH) / WINDOW_WIDTH),
+				(data->fract.r * (2 * row - WINDOW_HEIGHT) / WINDOW_HEIGHT)));
 		/*return (iterate(data->fract,
-				1.5 * (col - WINDOW_WIDTH / 2.0) / (0.5 * WINDOW_WIDTH),
-				(row - WINDOW_HEIGHT / 2.0) / (0.5 * WINDOW_HEIGHT)));*/
+				(2 * (2 * col - WINDOW_WIDTH) / WINDOW_WIDTH),
+				(2 * (2 * row - WINDOW_HEIGHT) / WINDOW_HEIGHT)));*/
 }
 
 void	draw_fractol(t_data *data)

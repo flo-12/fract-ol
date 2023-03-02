@@ -48,6 +48,7 @@ typedef struct s_fractol
 	double	c_im_var;
 	int		color_set;
 	char	fractol;
+	double	r;
 }			t_fractol;
 
 typedef struct s_img2
