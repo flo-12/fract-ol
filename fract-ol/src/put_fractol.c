@@ -12,49 +12,47 @@
 
 #include "fractol.h"
 
-int	iterate(t_c_val c_val, double z_re_init, double z_im_init, int iter_max)
+int	iterate(double c_val[2], double z_init[2], int iter_max)
 {
 	double	z_re;
 	double	z_re_new;
 	double	z_im;
 	int		iter;
 
-	z_re = z_re_init;
-	z_im = z_im_init;
+	z_re = z_init[0];
+	z_im = z_init[1];
 	iter = 0;
 	while (z_re * z_re + z_im * z_im <= 4 && iter < iter_max)
 	{
-		z_re_new = z_re * z_re - z_im * z_im + c_val.c_re;
-		z_im = 2 * z_re * z_im + c_val.c_im;
+		z_re_new = z_re * z_re - z_im * z_im + c_val[0];
+		z_im = 2 * z_re * z_im + c_val[1];
 		z_re = z_re_new;
 		iter++;
 	}
 	return (iter);
 }
 
-void	set_c_mandel(t_c_val *c_val, double col, double row, t_fractol fract)// t_r_val r, t_shift s)
+void	set_c_z_iter(double arr[2], double col, double row, t_fractol fract)
 {
-	c_val->c_re = fract.r.r_re * (2 * col - WINDOW_WIDTH) / WINDOW_WIDTH + fract.s.s_re;
-	c_val->c_im = fract.r.r_im * (2 * row - WINDOW_HEIGHT) / WINDOW_HEIGHT + fract.s.s_im;
+	arr[0] = fract.r.r_re * (2 * col - WINDOW_WIDTH) / WINDOW_WIDTH
+		+ fract.s.s_re;
+	arr[1] = fract.r.r_im * (2 * row - WINDOW_HEIGHT) / WINDOW_HEIGHT
+		+ fract.s.s_im;
 }
 
 int	iter_fractol(double col, double row, t_data *data)
 {
-	double	z_re_init;
-	double	z_im_init;
+	double	z_init[2];
 
 	if (data->fract.fractol == 'M')
 	{
-		set_c_mandel(&data->fract.c_iter, col, row, data->fract);
-		z_re_init = 0;
-		z_im_init = 0;
+		set_c_z_iter(data->fract.c_iter, col, row, data->fract);
+		z_init[0] = 0;
+		z_init[1] = 0;
 	}
 	else
-	{
-		z_re_init = data->fract.r.r_re * (2 * col - WINDOW_WIDTH) / WINDOW_WIDTH + data->fract.s.s_re;
-		z_im_init = data->fract.r.r_im * (2 * row - WINDOW_HEIGHT) / WINDOW_HEIGHT + data->fract.s.s_im;
-	}
-	return (iterate(data->fract.c_iter, z_re_init, z_im_init, data->fract.iter_max));
+		set_c_z_iter(z_init, col, row, data->fract);
+	return (iterate(data->fract.c_iter, z_init, data->fract.iter_max));
 }
 
 void	put_fractol(t_data *data)

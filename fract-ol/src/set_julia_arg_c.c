@@ -56,8 +56,8 @@ void	init_default_julia_c(t_data *data)
 {
 	ft_printf("%s(C_Re=%f | C_Im=%f)\n", WRONG_JULIA_C,
 		JULIA_C_RE, JULIA_C_IM);
-	data->fract.c_julia.c_re = JULIA_C_RE;
-	data->fract.c_julia.c_im = JULIA_C_IM;
+	data->fract.c_julia[0] = JULIA_C_RE;
+	data->fract.c_julia[1] = JULIA_C_IM;
 }
 
 void	set_julia_arg_c(t_data *data, int argc, char **argv)
@@ -84,6 +84,6 @@ void	set_julia_arg_c(t_data *data, int argc, char **argv)
 		init_default_julia_c(data);
 		return ;
 	}
-	data->fract.c_julia.c_re = get_double_c(i_re, i_re_sign, argv[2]);
-	data->fract.c_julia.c_im = get_double_c(i_im, i_im_sign, argv[3]);
+	data->fract.c_julia[0] = get_double_c(i_re, i_re_sign, argv[2]);
+	data->fract.c_julia[1] = get_double_c(i_im, i_im_sign, argv[3]);
 }

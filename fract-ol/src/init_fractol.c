@@ -60,8 +60,8 @@ void	set_fractol_parameters(char fractol, double c_re,
 {
 	data->fract.zoom = 1;
 	data->fract.fractol = fractol;
-	data->fract.c_iter.c_re = c_re;
-	data->fract.c_iter.c_im = c_im;
+	data->fract.c_iter[0] = c_re;
+	data->fract.c_iter[1] = c_im;
 	data->fract.iter_max = ITER_MAX;
 	data->fract.r.r_re = 2 * WINDOW_WIDTH / WINDOW_HEIGHT;
 	data->fract.r.r_im = 2;
@@ -86,8 +86,8 @@ void	init_fractol(t_data *data, int argc, char **argv)
 	{
 		data->fract.color_set = get_color_set(argc, argv, 5);
 		set_julia_arg_c(data, argc, argv);
-		set_fractol_parameters('J', data->fract.c_julia.c_re,
-				data->fract.c_julia.c_im, data);
+		set_fractol_parameters('J', data->fract.c_julia[0],
+			data->fract.c_julia[1], data);
 		data->fract.iter_max = get_iter_max(argc, argv, 4);
 	}
 	else

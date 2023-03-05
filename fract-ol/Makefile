@@ -12,7 +12,7 @@ PATH_INC = ./includes/
 PATH_SRC = ./src/
 
 FILE_SRC = main.c utils_mlx.c exit_fractol.c mlx_hooks.c put_fractol.c \
-		init_fractol.c set_julia_arg_c.c calc_color.c
+		init_fractol.c set_julia_arg_c.c calc_color.c utils_key_hooks.c
 
 SRC_MAIN = $(FILE_SRC:%=$(PATH_SRC)%)
 
