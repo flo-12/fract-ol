@@ -12,11 +12,6 @@
 
 #include "fractol.h"
 
-int	encode_rgb(int t, int red, int green, int blue)
-{
-	return (t << 24 | red << 16 | green << 8 | blue);
-}
-
 void	img_pixel_put(t_img2 *img, int x, int y, int color)
 {
 	char	*pixel;

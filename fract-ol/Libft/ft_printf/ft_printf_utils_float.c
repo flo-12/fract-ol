@@ -34,7 +34,14 @@ int	ft_argtype_float(va_list arg_ptr)
 	int		dec;
 
 	nbr = va_arg(arg_ptr, double);
-	len = ft_getnbr_si_len((int)nbr);
+	len = 0;
+	if (nbr < 0)
+	{
+		ft_putchar_fd('-', 1);
+		len += 1;
+		nbr *= (-1);
+	}
+	len += ft_getnbr_si_len((int)nbr);
 	ft_putnbr_fd((int)nbr, 1);
 	dec = 7;
 	ft_putchar_fd('.', 1);

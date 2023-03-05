@@ -12,6 +12,11 @@
 
 #include "fractol.h"
 
+int	encode_rgb(int t, int red, int green, int blue)
+{
+	return (t << 24 | red << 16 | green << 8 | blue);
+}
+
 int	calc_color(int iter, int iter_max, int cs, t_data *data)
 {
 	int		rgb[3];

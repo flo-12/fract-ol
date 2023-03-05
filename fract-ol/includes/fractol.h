@@ -25,30 +25,43 @@
 # include <string.h>
 # include <math.h>
 
-# define WINDOW_WIDTH 600
+# define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 600
-# define ZOOM_FACTOR 1.1
+# define ZOOM_FACTOR 2.0
 # define COLOR_SET 0
 # define ITER_MAX 150
 # define JULIA_C_RE -0.79
 # define JULIA_C_IM 0.15
 
-typedef struct s_fractol
+typedef struct s_c_val
 {
-	int		iter_max;
-	double	zoom;
-	int		centre[2];
-	int		row_min;
-	int		row_max;
-	int		col_min;
-	int		col_max;
 	double	c_re;
 	double	c_im;
-	double	c_re_var;
-	double	c_im_var;
-	int		color_set;
-	char	fractol;
-	double	r;
+}			t_c_val;
+
+typedef struct s_r_val
+{
+	double	r_re;
+	double	r_im;
+}			t_r_val;
+
+typedef struct s_shift
+{
+	double	s_re;
+	double	s_im;
+}			t_shift;
+
+typedef struct s_fractol
+{
+	int			iter_max;
+	double		zoom;
+	t_c_val		c_iter;
+	t_c_val		c_julia;
+	t_c_val		c_mandel;
+	int			color_set;
+	char		fractol;
+	t_r_val		r;
+	t_shift		s;
 }			t_fractol;
 
 typedef struct s_img2
@@ -68,9 +81,8 @@ typedef struct s_data {
 }			t_data;
 
 /* INIT_DATA */
-void	init_data(t_data *data, int argc, char **argv);
-void	get_julia_c(t_data *data, int argc, char **argv);
-//int		check_digit(char *str);
+void	set_julia_arg_c(t_data *data, int argc, char **argv);
+void	init_fractol(t_data *data, int argc, char **argv);
 void	set_fractol_parameters(char fractol, double c_re, double c_im, t_data *data);
 
 /* UTILS_MLX */
@@ -86,7 +98,8 @@ int		handle_destroy(t_data *data);
 int		hook_mouse(int key, int x, int y, t_data *data);
 
 /* DRAW_FRACTOL */
-void	draw_fractol(t_data *data);
+void	put_fractol(t_data *data);
+void	set_c_mandel(t_c_val *c_val, double col, double row, t_fractol fract);
 
 /* CALC_COLOR */
 int	calc_color(int iter, int iter_max, int cs, t_data *data);

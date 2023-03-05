@@ -12,71 +12,67 @@
 
 #include "fractol.h"
 
-int	iterate(t_fractol fract, double x_init, double y_init)
+int	iterate(t_c_val c_val, double z_re_init, double z_im_init, int iter_max)
 {
-	double	x;
-	double	x_new;
-	double	y;
+	double	z_re;
+	double	z_re_new;
+	double	z_im;
 	int		iter;
-	int		lim;
 
-	x = x_init;
-	y = y_init;
+	z_re = z_re_init;
+	z_im = z_im_init;
 	iter = 0;
-	lim = 4;
-	while (x * x + y * y <= lim && iter < fract.iter_max)
+	while (z_re * z_re + z_im * z_im <= 4 && iter < iter_max)
 	{
-		x_new = x * x - y * y + fract.c_re;
-		y = 2 * x * y + fract.c_im;
-		x = x_new;
+		z_re_new = z_re * z_re - z_im * z_im + c_val.c_re;
+		z_im = 2 * z_re * z_im + c_val.c_im;
+		z_re = z_re_new;
 		iter++;
 	}
 	return (iter);
 }
 
-int	iter_fractol(double col, double row, t_data *data)
+void	set_c_mandel(t_c_val *c_val, double col, double row, t_fractol fract)// t_r_val r, t_shift s)
 {
-	if (data->fract.fractol == 'M')
-	{
-		//data->fract.c_re = -2 + col / WINDOW_WIDTH * (4);
-		data->fract.c_re = 4 * col / WINDOW_WIDTH - 2;
-		return (iterate(data->fract, 0, 0));
-	}
-	else
-		return (iterate(data->fract,
-				(data->fract.r * (2 * col - WINDOW_WIDTH) / WINDOW_WIDTH),
-				(data->fract.r * (2 * row - WINDOW_HEIGHT) / WINDOW_HEIGHT)));
-		/*return (iterate(data->fract,
-				(2 * (2 * col - WINDOW_WIDTH) / WINDOW_WIDTH),
-				(2 * (2 * row - WINDOW_HEIGHT) / WINDOW_HEIGHT)));*/
+	c_val->c_re = fract.r.r_re * (2 * col - WINDOW_WIDTH) / WINDOW_WIDTH + fract.s.s_re;
+	c_val->c_im = fract.r.r_im * (2 * row - WINDOW_HEIGHT) / WINDOW_HEIGHT + fract.s.s_im;
 }
 
-void	draw_fractol(t_data *data)
+int	iter_fractol(double col, double row, t_data *data)
 {
-	double	row;
-	double	col;
+	double	z_re_init;
+	double	z_im_init;
+
+	if (data->fract.fractol == 'M')
+	{
+		set_c_mandel(&data->fract.c_iter, col, row, data->fract);
+		z_re_init = 0;
+		z_im_init = 0;
+	}
+	else
+	{
+		z_re_init = data->fract.r.r_re * (2 * col - WINDOW_WIDTH) / WINDOW_WIDTH + data->fract.s.s_re;
+		z_im_init = data->fract.r.r_im * (2 * row - WINDOW_HEIGHT) / WINDOW_HEIGHT + data->fract.s.s_im;
+	}
+	return (iterate(data->fract.c_iter, z_re_init, z_im_init, data->fract.iter_max));
+}
+
+void	put_fractol(t_data *data)
+{
 	int		iter;
 	int		x;
 	int		y;
 
 	y = -1;
-	row = data->fract.row_min;
 	while (++y <= WINDOW_HEIGHT)
 	{
-		if (data->fract.fractol == 'M')
-			/*data->fract.c_im =  (-2 + 4 *WINDOW_HEIGHT / WINDOW_WIDTH)
-				+ row * (-2 - (-2 + 4 *WINDOW_HEIGHT / WINDOW_WIDTH)) / WINDOW_HEIGHT;*/
-			//data->fract.c_im = (2 * WINDOW_HEIGHT / WINDOW_WIDTH + 2) * row / WINDOW_HEIGHT - 2;
-			data->fract.c_im = 4 * row / WINDOW_HEIGHT - 2;
-		col = data->fract.col_min;
 		x = -1;
 		while (++x <= WINDOW_WIDTH)
 		{
-			iter = iter_fractol(col, row, data);
+			iter = iter_fractol(x, y, data);
 			img_pixel_put(&data->img, x, y, calc_color(iter,
 					data->fract.iter_max, data->fract.color_set, data));
-			col += 1 / (double)data->fract.zoom;
 		}
-		row += 1 / (double)data->fract.zoom;
 	}
+	mlx_put_image_to_window(data->mlx, data->win, data->img.image, 0, 0);
 }

@@ -59,26 +59,14 @@ void	set_fractol_parameters(char fractol, double c_re,
 	double c_im, t_data *data)
 {
 	data->fract.zoom = 1;
-	data->fract.row_min = 0;
-	if (WINDOW_HEIGHT >= WINDOW_WIDTH)
-	{
-		data->fract.row_max = WINDOW_WIDTH;
-		data->fract.col_max = WINDOW_WIDTH;
-	}
-	else
-	{
-		data->fract.row_max = WINDOW_HEIGHT;
-		data->fract.col_max = WINDOW_HEIGHT;
-	}
-	data->fract.col_min = 0;
-	data->fract.centre[0] = WINDOW_WIDTH / 2;
-	data->fract.centre[1] = WINDOW_HEIGHT / 2;
 	data->fract.fractol = fractol;
-	data->fract.c_re = c_re;
-	data->fract.c_im = c_im;
-	data->fract.c_re_var = 0;
-	data->fract.c_im_var = 0;
-	data->fract.r = 2;
+	data->fract.c_iter.c_re = c_re;
+	data->fract.c_iter.c_im = c_im;
+	data->fract.iter_max = ITER_MAX;
+	data->fract.r.r_re = 2 * WINDOW_WIDTH / WINDOW_HEIGHT;
+	data->fract.r.r_im = 2;
+	data->fract.s.s_re = 0;
+	data->fract.s.s_im = 0;
 }
 
 void	init_fractol(t_data *data, int argc, char **argv)
@@ -88,42 +76,20 @@ void	init_fractol(t_data *data, int argc, char **argv)
 			|| (!ft_strncmp(argv[1], "M", 1) && (ft_strlen(argv[1]) == 1)))
 		&& (argc >= 2 && argc <= 4))
 	{
-		data->fract.iter_max = get_iter_max(argc, argv, 2);
 		data->fract.color_set = get_color_set(argc, argv, 3);
 		set_fractol_parameters('M', 0, 0, data);
+		data->fract.iter_max = get_iter_max(argc, argv, 2);
 	}
 	else if ((!ft_strncmp(argv[1], "Julia", ft_strlen("Julia"))
 			&& (ft_strlen(argv[1]) == ft_strlen("Julia")))
 		|| (!ft_strncmp(argv[1], "J", 1) && (ft_strlen(argv[1]) == 1)))
 	{
-		set_fractol_parameters('J', 0, 0, data);
-		get_julia_c(data, argc, argv);
-		data->fract.iter_max = get_iter_max(argc, argv, 4);
 		data->fract.color_set = get_color_set(argc, argv, 5);
+		set_julia_arg_c(data, argc, argv);
+		set_fractol_parameters('J', data->fract.c_julia.c_re,
+				data->fract.c_julia.c_im, data);
+		data->fract.iter_max = get_iter_max(argc, argv, 4);
 	}
 	else
 		exit_fractol(data, 0, ARG_WRONG);
-}
-
-void	init_data(t_data *data, int argc, char **argv)
-{
-	if (argc == 1 || argc > 6)
-		exit_fractol(data, 0, ARG_WRONG);
-	init_fractol(data, argc, argv);
-	data->mlx = mlx_init();
-	if (!data->mlx)
-		exit_fractol(data, 1, INIT_MLX);
-	data->win = mlx_new_window(data->mlx, WINDOW_WIDTH,
-			WINDOW_HEIGHT, "Fractol");
-	if (!data->win)
-	{
-		exit_fractol(data, 1, INIT_WIN);
-	}
-	data->img.image = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	if (!data->img.image)
-	{
-		exit_fractol(data, 1, INIT_IMG);
-	}
-	data->img.addr = mlx_get_data_addr(data->img.image, &data->img.bpp,
-			&data->img.size_line, &data->img.endian);
 }
