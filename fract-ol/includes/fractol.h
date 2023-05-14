@@ -25,8 +25,8 @@
 # include <string.h>
 # include <math.h>
 
-# define WINDOW_WIDTH 1000
-# define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 750
+# define WINDOW_HEIGHT 450
 # define ZOOM_FACTOR 2.0
 # define COLOR_SET 0
 # define ITER_MAX 150

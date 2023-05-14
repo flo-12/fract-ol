@@ -37,11 +37,11 @@ void	julia_from_mandel(t_data *data)
 	ft_bzero(&data->fract.c_mandel, sizeof(data->fract.c_mandel));
 }
 
-/* Key Left or Right pressed -> change color set */
+/* Key A or D pressed -> change color set */
 void	change_color_set(int key, t_data *data)
 {
 	ft_printf("Changing color set\n");
-	if (key == KEY_RIGHT)
+	if (key == KEY_D)
 	{
 		data->fract.color_set++;
 		if (data->fract.color_set > 5)
@@ -55,11 +55,11 @@ void	change_color_set(int key, t_data *data)
 	}
 }
 
-/* Key Up or Down pressed -> change iter_max factor */
+/* Key W or S pressed -> change iter_max factor */
 void	change_iter_max(int key, t_data *data)
 {
 	ft_printf("Changing iter max value to ");
-	if (key == KEY_UP)
+	if (key == KEY_W)
 	{
 		data->fract.iter_max += 50;
 		ft_printf("%d\n", data->fract.iter_max);
