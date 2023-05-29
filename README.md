@@ -1,30 +1,31 @@
 # fract-ol
 * *General description (1-4 sentences)*
 
-*Note* that the program is written with Linux. Other operating systems were not tested.
-
 # Usage
-* *General explenation with MiniLibX and libft*
-* *Note that MiniLibX has to be downloaded and installed*
+*Note that the program is written with Linux. Other operating systems were not tested.*
+
 
 ## Installing and Compiling
+* *General explenation with MiniLibX and libft*
+* *Note that MiniLibX has to be cloned and installed*
 * *MiniLibX Link and refering to installation Guide*
 * *own Makefile with ```make```*
 
 ## Execution
 ```./fractol <type> <[opt-Julia] C_Re> <[opt-Julia] C_Im> <[opt] max_Iter> <[opt] color>```
-* Example: ./fractol J -0.89 0.42 300 2
-*Please note that for the Julia set, the color option will only be available after specifying calculation values C_Re and C_Im*
+* Example: ```./fractol J -0.89 0.42 300 2```
+
+*Note that for the Julia set, the color option will only be available after specifying calculation values ```C_Re``` and ```C_Im```.*
 
 Types are:
-* M or Mandelbrot: Mandelbrot fractol
-* J or Julia: Julia fractol
+* ```M``` or ```Mandelbrot```: Mandelbrot fractol
+* ```J``` or ```Julia```: Julia fractol
 
 Optional parameters:
-* C_Re [optional and only for Julia]: real value of Julia set as double (default if not set: -0.79)
-* C_Im [optional and only for Julia]: imaginary value of Julia set as double (default if not set: -0.15)
-* max_Iter [optional]: max amount of Iterations for calculations as int (default if not set: 400
-* color [optional]: color set in the range of 0 and 5 as int )default if not set: 0)
+* ```C_Re``` [optional and only for Julia]: real value of Julia set as double (default if not set: -0.79)
+* ```C_Im``` [optional and only for Julia]: imaginary value of Julia set as double (default if not set: -0.15)
+* ```max_Iter``` [optional]: max amount of Iterations for calculations as int (default if not set: 400
+* ```color``` [optional]: color set in the range of 0 and 5 as int )default if not set: 0)
 
 ## Fractol controls
 While Fractol is running, the following set of controls are available:
@@ -42,6 +43,7 @@ While Fractol is running, the following set of controls are available:
 *Note that a feedback to each action is also given in the Terminal.*
 
 # Screenshots
+...
 
 # general information a ReadMe contains:
 * What the project does? 
