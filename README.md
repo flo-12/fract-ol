@@ -14,6 +14,12 @@ This program is the first graphical project at 42. It is generating a Mandelbrot
 * *MiniLibX Link and refering to installation Guide*
 * *own Makefile with ```make```*
 
+Clone the repository, including the embedded MiniLibX repository:
+
+You are now ready to ```make``` fract-ol.
+
+*Check the MiniLibX ReadMe in case of problems with the library.*
+
 ## Execution
 ```./fractol <type> <[opt-Julia] C_Re> <[opt-Julia] C_Im> <[opt] max_Iter> <[opt] color>```
 * Example: ```./fractol J -0.89 0.42 300 2```
@@ -45,17 +51,3 @@ While Fractol is running, the following set of controls are available:
 
 *Note that a feedback to each action is also given in the Terminal.*
 
-# Screenshots
-...
-
-# general information a ReadMe contains:
-* What the project does? 
-* Why the project is useful?
-* How users can get started with the project?
-* Where users can get help with your project?
-* Who maintains and contributes to the project?
-
-# links
-Absolut Link: [Link to libft - https://github.com/flo-12/Libft](https://github.com/flo-12/Libft)
-
-Relative Link: [relative Link to Libft - ../../../Libft](../../../Libft)
