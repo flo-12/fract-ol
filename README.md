@@ -9,14 +9,10 @@ This program is the first graphical project at 42. It is generating a Mandelbrot
 
 
 ## Installing and Compiling
-* *General explenation with MiniLibX and libft*
-* *Note that MiniLibX has to be cloned and installed*
-* *MiniLibX Link and refering to installation Guide*
-* *own Makefile with ```make```*
-
-Clone the repository, including the embedded MiniLibX repository:
-
-You are now ready to ```make``` fract-ol.
+1) Clone this repository
+2) Clone the [MiniLibX Repo](https://github.com/42Paris/minilibx-linux)
+3) ```make``` the MiniLibX (MiniLibX should be afterwards embedded in fract-ol refering to folder and file name in Makefile)
+4) ```make``` fract-ol
 
 *Check the MiniLibX ReadMe in case of problems with the library.*
 
