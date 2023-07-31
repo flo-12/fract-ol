@@ -2,7 +2,10 @@
 In mathematics, a fractal is a geometric shape containing detailed structure at arbitrarily small scales, usually having a fractal dimension strictly exceeding the topological dimension. Many fractals appear similar at various scales. Two widely known and used fractals are the Mandelbrot and Julia Fractol.
 
 This program is the first graphical project at 42. It is generating a Mandelbrot or Julia Fractal. It also hooks different key and mouse actions to change certain parameters of the Fractal. For the graphical visualization the 42-school's library MiniLibX is used.
-![image](https://github.com/flo-12/fract-ol_project/assets/119588327/5a63b765-cc41-4fc6-a28a-30872306e2ae)
+![Screenshot Julia-Set in red with default values](https://github.com/flo-12/fract-ol/blob/main/Screenshots/Julia_default_red.png)
+![Screenshot Mandelbrot-Set in blue](https://github.com/flo-12/fract-ol/blob/main/Screenshots/Mandelbrot_default_blue.png)
+
+
 
 # Usage
 *Note that the program is written with Linux. Other operating systems were not tested.*
