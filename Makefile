@@ -30,15 +30,16 @@ LIBS = -L$(PATH_LIBFT) -$(LFT) -L$(PATH_MINILIBX) -$(MINILX) -L/usr/lib -Imlx_li
 RM = rm -f
 
 # Built process
-all: $(MLX) $(NAME)
+all: $(MLX) $(LIBFT) $(NAME)
 
-$(NAME): $(PATH_LIBFT)
-	@make -C $(PATH_LIBFT) $(LIBFT)
-	@make -C $(PATH_LIBFT) $(LIBFT) clean
+$(NAME):
 	@cc $(SRC_MAIN) $(LIBS) $(CFLAGS) -I$(PATH_MINILIBX) -I$(PATH_INC) -I$(PATH_LIBFT) -o $(NAME)
 
 $(MLX):
 	@make -C $(PATH_MINILIBX)
+
+$(LIBFT):
+	@make -C $(PATH_LIBFT) $(LIBFT)
 
 clean:
 	@make -C $(PATH_LIBFT) clean
