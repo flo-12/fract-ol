@@ -6,6 +6,26 @@ This program is the first graphical project at 42. It is generating a Mandelbrot
 ![Screenshot Mandelbrot-Set in blue](https://github.com/flo-12/fract-ol/blob/main/Screenshots/Mandelbrot_default_blue.png)
 
 
+# Learning Goals
+- create a basic computer graphics project!
+- get familiar with the schools' graphical library MiniLibX and using practices like event handling, etc.
+- calculating different fract-ols and use the mathematical notion of complex numbers
+- How to translate the above points into pure C-code
+
+Core features of the program are:
+- render Mandelbrot and Julia set
+- handle key and mouse hooks to zoom and move the image
+- different color sets for each fractol
+- create Julia set of specific point in Mandelbrot
+
+Allowed external functions / libraries:
+- open, close, read, write, malloc, free, perror, strerror, exit, printf
+- All functions of the math library (-lm compiler option, man man 3 math)
+- All functions of the MinilibX - graphical library provided from 42 (see submodule)
+- Libft - own library with basic functions such as calloc, strncpm, etc. (see submodule)
+
+ _As usual: All heap allocated memory space must be properly freed. No leaks will be tolerated._
+
 
 # Usage
 *Note that the program is written with Linux. Other operating systems were not tested.*
