@@ -33,7 +33,7 @@ Allowed external functions / libraries:
 
 ## Installing and Compiling
 1) Clone the repository - and ensure that submodule MiniLibX is cloned as well - by ```git clone --recurse https://github.com/flo-12/fract-ol <folder_name>```
-2) direct to the cloned folder ```<folder_name>```
+2) direct to the cloned folder ```cd <folder_name>```
 4) ```make``` fract-ol (automatically makes MiniLibX for Linux)
 
 *Check the MiniLibX ReadMe in case of problems with the library.*
