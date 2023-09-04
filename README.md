@@ -69,3 +69,23 @@ While Fractol is running, the following set of controls are available:
 
 *Note that a feedback to each action is also given in the Terminal.*
 
+
+# Sources
+Realizing this project requires a deeper understanding of the math behind fractals and of the schools graphical library. The following list is a recommendation of sources for anyone who wants to know more about the topic:
+| Topic								| Link                                                        	|
+|----------------------------------:|:--------------------------------------------------------------|
+| General knowledge Fractals	| [Wikipedia-Fractal](https://en.wikipedia.org/wiki/Fractal) |
+| General knowledge Fractals (german)	| [Wikipedia-Fractal](https://de.wikipedia.org/wiki/Fraktal) |
+| Julia & Mandelbrot set (german) | [theissenonline](http://theissenonline.de/Mathematik/JuliaMandelbrotNeu.pdf) |
+| Transformation polar cartesian (german) | [polar coordination system](https://www.lernhelfer.de/schuelerlexikon/mathematik-abitur/artikel/polarkoordinatensystem#) |
+| distortion in Mandelbrot | [stackoverflow](https://stackoverflowteams.com/c/42network/questions/1181) |
+| Intro & pseudocode | [Computer Graphics Tutorial](https://lodev.org/cgtutor/juliamandelbrot.html) |
+| Pseudocode and math Mandelbrot | [Let’s draw the Mandelbrot set!](https://jonisalonen.com/2013/lets-draw-the-mandelbrot-set/) |
+| Mathematical description Julia & Mandelbrot | [Understanding Julia and Mandelbrot Sets](http://www.karlsims.com/julia.html) |
+| Julia & Mandelbrot intro (german) | [Julia-Mengen und Mandelbrot-Menge](http://theissenonline.de/Mathematik/JuliaMandelbrotNeu.pdf) |
+| Intro / Tutorial MiniLibX | [MiniLibX tutorial](https://harm-smits.github.io/42docs/libs/minilibx.html) |
+| Intro / Tutorial MiniLibX by Aurelien Brabant | [Getting started with the minilibx](https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx) |
+
+
+
+
